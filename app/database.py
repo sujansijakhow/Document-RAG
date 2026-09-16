@@ -1,10 +1,4 @@
-"""SQLAlchemy engine/session wiring for the metadata store.
-
-SQLite is used by default (zero external dependency, fine for a
-take-home / small deployment) but `DATABASE_URL` can point at any
-SQLAlchemy-supported SQL database (Postgres, MySQL, ...) without code
-changes.
-"""
+# SQLAlchemy database setup and session dependency
 
 from __future__ import annotations
 
@@ -28,7 +22,7 @@ class Base(DeclarativeBase):
 
 
 def get_db() -> Generator[Session, None, None]:
-    """FastAPI dependency that yields a request-scoped DB session."""
+    # Provide a database session for one request.
     db = SessionLocal()
     try:
         yield db
